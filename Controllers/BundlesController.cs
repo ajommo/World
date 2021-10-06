@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 using Game.Database;
 using Game.World.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Game.World.Controllers
 {
@@ -15,10 +16,12 @@ namespace Game.World.Controllers
     public class BundlesController : ControllerBase
     {
         private readonly DatabaseContext database;
+        private readonly IConfiguration configuration;
 
-        public BundlesController(DatabaseContext database)
+        public BundlesController(DatabaseContext database, IConfiguration configuration)
         {
             this.database = database;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -39,8 +42,9 @@ namespace Game.World.Controllers
         [Route("bundles/{id}/binary")]
         public async Task<ActionResult> GetBundleFile(string id)
         {
-            var bytes = await System.IO.File.ReadAllBytesAsync(@"C:\Game\Bundles\" + id);
-            return File(bytes, "application/octet-stream", Path.GetFileName("primitives"));
+            var bundle = database.GetBundle(id);
+            var bytes = await System.IO.File.ReadAllBytesAsync(configuration["Bundles"] + id);
+            return File(bytes, "application/octet-stream", id + "." + bundle.Version);
         }
     }
 }

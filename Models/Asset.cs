@@ -8,10 +8,10 @@ namespace Game.World.Models
     public class Asset
     {
         private string id;
-        private string bundle;
         private string name;
+        private int version;
         private string prefab;
-        private string version;
+        private string bundle;
 
         public Asset()
         {
@@ -20,45 +20,45 @@ namespace Game.World.Models
         public Asset(AssetEntity asset)
         {
             id = asset.Id;
-            bundle = asset.Bundle;
             name = asset.Name;
-            prefab = asset.Prefab;
             version = asset.Version;
+            prefab = asset.Prefab;
+            bundle = asset.Bundle;
         }
 
-        [DataMember(Name = "id")]
+        [DataMember(Name = "id", Order = 0)]
         public string Id
         {
             get => id;
             set => id = value;
         }
 
-        [DataMember(Name = "bundle")]
-        public string Bundle
-        {
-            get => bundle;
-            set => bundle = value;
-        }
-
-        [DataMember(Name = "name")]
+        [DataMember(Name = "name", Order = 1)]
         public string Name
         {
             get => name;
             set => name = value;
         }
 
-        [DataMember(Name = "prefab")]
+        [DataMember(Name = "version", Order = 2)]
+        public int Version
+        {
+            get => version;
+            set => version = value;
+        }
+
+        [DataMember(Name = "prefab", Order = 3)]
         public string Prefab
         {
             get => prefab;
             set => prefab = value;
         }
 
-        [DataMember(Name = "version")]
-        public string Version
+        [DataMember(Name = "bundle", Order = 4)]
+        public string Bundle
         {
-            get => version;
-            set => version = value;
+            get => bundle;
+            set => bundle = value;
         }
     }
 }

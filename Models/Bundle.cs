@@ -9,7 +9,7 @@ namespace Game.World.Models
     {
         private string id;
         private string name;
-        private string version;
+        private int version;
 
         public Bundle()
         {
@@ -22,22 +22,22 @@ namespace Game.World.Models
             version = bundle.Version;
         }
 
-        [DataMember(Name = "id")]
+        [DataMember(Name = "id", Order = 0)]
         public string Id
         {
             get => id;
             set => id = value;
         }
 
-        [DataMember(Name = "name")]
+        [DataMember(Name = "name", Order = 1)]
         public string Name
         {
             get => name;
             set => name = value;
         }
 
-        [DataMember(Name = "version")]
-        public string Version
+        [DataMember(Name = "version", Order = 2)]
+        public int Version
         {
             get => version;
             set => version = value;
