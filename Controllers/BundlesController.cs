@@ -39,7 +39,7 @@ namespace Game.World.Controllers
         [Route("bundles/{id}/binary")]
         public async Task<ActionResult> GetBundleFile(string id)
         {
-            var bytes = await System.IO.File.ReadAllBytesAsync(@"C:\Game\Game.Bundles\" + id);
+            var bytes = await System.IO.File.ReadAllBytesAsync(@"C:\Game\Bundles\" + id);
             return File(bytes, "application/octet-stream", Path.GetFileName("primitives"));
         }
     }
