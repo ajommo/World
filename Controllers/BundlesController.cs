@@ -28,14 +28,14 @@ namespace Game.World.Controllers
         [Route("bundles")]
         public IEnumerable<Bundle> GetBundles()
         {
-            return database.GetBundles().Select(b => new Bundle(b));
+            return database.GetBundles().Select(b => new Bundle(b, database.Assets));
         }
 
         [HttpGet]
         [Route("bundles/{id}")]
         public Bundle GetBundle(string id)
         {
-            return new Bundle(database.GetBundle(id));
+            return new Bundle(database.GetBundle(id), database.Assets);
         }
 
         [HttpGet]
