@@ -18,7 +18,7 @@ namespace Game.World.Controllers
 
         [HttpGet]
         [Route("assets/{id}")]
-        public ActionResult<Asset> GetAsset(string id)
+        public Asset GetAsset(string id)
         {
             return new Asset(database.GetAsset(id));
         }
